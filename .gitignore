@@ -1,0 +1,27 @@
+# Binários de build
+cache-simulator
+*.test
+*.out
+
+# Trace completo (~1,2 GB) — obtido separadamente, ver data/README.md
+data/*.csv
+!data/head_trace.csv
+
+# Artefatos derivados e regeneráveis a partir do trace
+artifacts/v1/windows_demand.json
+artifacts/v1/snapshots/
+
+# Ambiente Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE / SO
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Ferramentas de planejamento
+.agents/

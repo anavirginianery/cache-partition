@@ -1,0 +1,43 @@
+# Configuração de reprodução dos experimentos descritos em artigo.tex.
+#
+# Protocolo:
+#   - trace de 1 hora
+#   - warmup de 10 minutos
+#   - medição de 50 minutos
+#   - capacidades: 5%, 10%, 15%, 20%, 25%, 30%, 50% do footprint
+#   - FairShare reativo: janela de 10 minutos, decisão a cada 10 minutos,
+#     sempre usando a janela anterior já completa
+#   - Memshare: 50% reservado, crédito = tamanho médio dos itens distintos
+
+trace_path: data/anonymized_on_hour_sampled_trace.csv
+workload_profile: artifacts/v1/workload_profile.json
+windows_demand: artifacts/v1/windows_demand.json
+results_dir: artifacts/v1/results
+snapshots_dir: artifacts/v1/snapshots
+
+warmup_seconds: 600
+total_seconds: 3600
+
+capacities_pct:
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  - 50
+
+policies_enabled:
+  - no_partition
+  - memshare
+  - fairshare
+
+memshare_reserved_proportion: 0.5
+memshare_credit_bytes: auto
+memshare_shadow_queue_k: 2
+memshare_compact_interval: 100000
+memshare_seed: 42
+
+fairshare_window_seconds: 600
+fairshare_slide_seconds: 600
+fairshare_floor_bytes: auto

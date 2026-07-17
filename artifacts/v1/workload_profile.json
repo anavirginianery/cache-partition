@@ -1,0 +1,20 @@
+{
+  "trace_path": "anonymized_on_hour_sampled_trace.csv",
+  "total_requests": 8140207,
+  "num_tenants": 4394,
+  "num_distinct_items": 5182659,
+  "footprint_bytes": 4241016319,
+  "avg_item_size": 818.3089643752368,
+  "repetition_rate": 0.36332589576653274,
+  "duration_seconds": 3599.961,
+  "first_timestamp": 0,
+  "last_timestamp": 3599.961,
+  "requests_per_tenant_percentiles": {
+    "p50": 218,
+    "p75": 993,
+    "p90": 3441.100000000001,
+    "p95": 7270.949999999969,
+    "p99": 29303.37999999964
+  },
+  "wall_time_seconds": 5.655603462
+}
