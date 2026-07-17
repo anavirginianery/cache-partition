@@ -33,9 +33,11 @@ e ~6 GB de disco livre.
 
 ## 2. Obter o trace
 
-Ver [`data/README.md`](../data/README.md). O trace deve ficar em
-`data/anonymized_on_hour_sampled_trace.csv`, que é o caminho esperado por
-`config/experiment.yaml`.
+O trace vem do dataset público
+[ufcg-lsd/vtex-ufcg-cache-dataset](https://github.com/ufcg-lsd/vtex-ufcg-cache-dataset)
+e deve ficar em `data/anonymized_on_hour_sampled_trace.csv`, que é o caminho
+esperado por `config/experiment.yaml`. Ver [`data/README.md`](../data/README.md)
+para o formato e a caracterização esperada.
 
 Formato: `tenant,product,timestamp,size`, com `timestamp` **em microssegundos**
 (convertido para segundos na leitura).

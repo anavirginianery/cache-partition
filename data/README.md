@@ -8,12 +8,20 @@
 | `anonymized_on_hour_sampled_trace.csv` | **não** (~1,2 GB) | Trace completo de 1 hora usado no experimento |
 
 O trace completo não é versionado por causa do tamanho. Ele deve ser obtido a
-partir do dataset público citado no artigo (`VTEXCacheDataset`) e colocado neste
-diretório com o nome `anonymized_on_hour_sampled_trace.csv`, que é o caminho
-esperado por `config/experiment.yaml`.
+partir do dataset público citado no artigo (`VTEXCacheDataset`):
 
-> **Link do dataset:** preencher com a URL/DOI exata do depósito público do
-> `VTEXCacheDataset` (a mesma referenciada no `references.bib` do artigo).
+**https://github.com/ufcg-lsd/vtex-ufcg-cache-dataset**
+
+Coloque-o neste diretório com o nome `anonymized_on_hour_sampled_trace.csv`, que
+é o caminho esperado por `config/experiment.yaml`:
+
+```bash
+# a partir da raiz do repositório, após obter o trace do dataset acima
+cp <caminho-do-trace-baixado> data/anonymized_on_hour_sampled_trace.csv
+```
+
+Se preferir manter o trace em outro lugar, ajuste o `trace_path` em
+`config/experiment.yaml` em vez de copiar o arquivo.
 
 ## Formato
 

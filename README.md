@@ -55,22 +55,43 @@ locatários.
 - **Go** ≥ 1.21 (desenvolvido e validado com 1.26.4)
 - **Python** ≥ 3.10 com `pandas`, `matplotlib`, `numpy` (`requirements.txt`)
 - **~8 GB de RAM** e **~6 GB de disco** (trace de 1,2 GB + artefatos)
-- O **trace** em `data/anonymized_on_hour_sampled_trace.csv` — não versionado por
-  causa do tamanho, ver [`data/README.md`](data/README.md)
+- O **trace**, obtido do dataset público
+  [ufcg-lsd/vtex-ufcg-cache-dataset](https://github.com/ufcg-lsd/vtex-ufcg-cache-dataset)
+  e colocado em `data/anonymized_on_hour_sampled_trace.csv`. Não é versionado aqui
+  por causa do tamanho — ver [`data/README.md`](data/README.md).
 
-## Reprodução rápida
+## Reprodução
+
+### Caminho rápido
 
 ```bash
 pip install -r requirements.txt
 ./scripts/run_all.sh
 ```
 
-O script roda o pipeline inteiro (testes → caracterização → demanda → 21 cenários →
-agregação → sanity checks → figuras). Tempo total: **~10 min** num Intel i5-11300H
-(8 threads, 8 GB RAM).
+`scripts/run_all.sh` **reproduz exatamente o experimento do artigo**, e nada além
+disso: fixa a configuração em `config/experiment.yaml`, roda o pipeline inteiro na
+ordem correta (testes → caracterização → demanda do FairShare → 21 cenários →
+agregação → sanity checks → figuras) e força `-snapshots=false` para garantir
+warmup limpo. Não é um script genérico: para variar parâmetros, veja o playbook.
+Tempo total: **~10 min** num Intel i5-11300H (8 threads, 8 GB RAM).
 
-Para os passos individuais e a justificativa de cada parâmetro, veja
-[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md).
+### Caminho detalhado — o playbook
+
+**Recomendamos acompanhar a reprodução por
+[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md)**, mesmo usando o script. O
+playbook é o documento de referência da reprodução e traz o que o script não
+mostra:
+
+- o **ambiente de referência** exato (CPU, RAM, SO, versões de Go e Python);
+- cada etapa isolada, com seus comandos e flags;
+- a **justificativa de cada parâmetro** (por que `window=600`/`slide=600`, por que
+  50% reservado no Memshare, por que `-snapshots=false`);
+- os **valores esperados** para conferir a caracterização do trace e o Hit Ratio de
+  cada cenário — a simulação é determinística, então os números devem bater;
+- como interpretar os sanity checks e o que é limitação conhecida da política, não bug.
+
+Se algum número divergir, é o playbook que diz onde olhar.
 
 ## Mapeamento dos cenários
 
@@ -122,4 +143,5 @@ para 0,006 (em 50%), com perda mínima de Hit Ratio.
 ## Licença
 
 Código sob licença MIT (ver `LICENSE`). O trace é derivado do dataset público
-citado no artigo e está sujeito aos termos do depósito original.
+[ufcg-lsd/vtex-ufcg-cache-dataset](https://github.com/ufcg-lsd/vtex-ufcg-cache-dataset)
+e está sujeito aos termos do depósito original.
